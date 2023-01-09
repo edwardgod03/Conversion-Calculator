@@ -1,129 +1,104 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+#Edward Godinez 
+#11.21.2022 
+#Lab 13
 
-# C extensions
-*.so
+#This program will convert Inches to Centimeters, Centimeters to Inches,
+#Grams to Ounces, Kilometers to Miles, or Miles to Kilometers.
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+def user_greeting():
+    #User Greeting
+    print("This program will convert Inches to Centimeters, Centimeters,to Inches,")
+    print("Grams to Ounces, Kilometers to Miles, or Miles to Kilometers.") 
+    print()
+    print("Enter I to convert from Inches to Centimeters.")
+    print("Enter C to convert from Centimeters to Inches.") 
+    print("Enter O to convert from Ounces to Grams.") 
+    print("Enter G to convert from Grams to Ounces.") 
+    print("Enter M to convert from Miles to Kilometers.") 
+    print("Enter K to convert from Kilometers to Miles.")
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+def userchoice():
+    #Function to get the conversion, with error check.
+    print()
+    choice = input("Enter the type of conversion you would like to do: ").upper()
+    
+    #Error check
+    while choice != 'I' and choice != 'C' and choice != 'O' and choice != 'G' and choice != 'M' and choice != 'K':
+        choice = input('Please enter an I or C or O or G or M or K: ').upper()
+        
+    return choice
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+def getInputDoCalculationDisplay(choice):
+    #Function that gets the user input for the measurement/weight.
+    print()
+    measureweight = float(input("Enter a measure/weight to convert: "))
+    print()
+    
+    #if/elif/else statement, with conversions and formats needed to display the answer.
+    if choice == 'I': 
+        answer = measureweight * 2.54  
+        print(format(measureweight,',.2f'), "Inches equals", format(answer,',.2f'),"Centimeters.")
+            
+    elif choice == 'C': 
+        answer = measureweight / 2.54   
+        print(format(measureweight,',.2f'), "Centimeters equals", format(answer,',.2f'),"Inches.")
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
+    elif choice == 'O':  
+        answer = measureweight * 28.3495231 
+        print(format(measureweight,',.2f'), "Ounces equals", format(answer,',.2f'),"Grams.")
 
-# Translations
-*.mo
-*.pot
+    elif choice == 'G': 
+        answer = measureweight / 28.3495231  
+        print(format(measureweight,',.2f'), "Grams equals", format(answer,',.2f'),"Ounces.")
+            
+    elif choice == 'M': 
+        answer = measureweight * 1.609344  
+        print(format(measureweight,',.2f'), "Miles equals", format(answer,',.2f'),"Kilometers.")
+        
+    elif choice == 'K': 
+        answer = measureweight / 1.609344 
+        print(format(measureweight,',.2f'), "Kilometers equals", format(answer,',.2f'),"Miles.") 
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+    print()
+        
+def runAgain():
+    #Function that asks the user if they would like to run the program again.
+    yesNo = input("Would you like to make another conversion? (y/n): ").lower()
 
-# Flask stuff:
-instance/
-.webassets-cache
+    #Error check.
+    while yesNo != 'y' and yesNo != 'n':
+        
+        yesNo = input("Please enter 'y' or 'n': ").lower()
+        
+    if yesNo == 'n':
+        run = False
+    else:
+        run = True
 
-# Scrapy stuff:
-.scrapy
+    return run
 
-# Sphinx documentation
-docs/_build/
+def exitMessage():
+    #Exit Message
+    print("Have a nice day.")
 
-# PyBuilder
-target/
+#------------------------ Main --------------------------
 
-# Jupyter Notebook
-.ipynb_checkpoints
+#function to display the user greeting.
+user_greeting()
 
-# IPython
-profile_default/
-ipython_config.py
+runMain = True
+#Main program loop
+while runMain == True:
 
-# pyenv
-.python-version
+    #Function that gets the type of conversion
+    choiceMain = userchoice()
+    
+    #Function that does the calculation and displays and formats the answer.
+    getInputDoCalculationDisplay(choiceMain)
+    
+    #Function that asks the user if they would like to run the program again
+    runMain = runAgain()
 
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
+print()
+#Function that shows the exit message.
+exitMessage()
